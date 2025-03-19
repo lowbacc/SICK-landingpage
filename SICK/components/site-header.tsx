@@ -1,182 +1,121 @@
 "use client";
 
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
-import { AlignJustify, XIcon } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { AnimatePresence, motion } from "framer-motion";
 
-const menuItem = [
-  {
-    id: 1,
-    label: "Features",
-    href: "/features",
-  },
-  {
-    id: 2,
-    label: "Pricing",
-    href: "#",
-  },
-  {
-    id: 3,
-    label: "Careers",
-    href: "#",
-  },
-  {
-    id: 4,
-    label: "Contact Us",
-    href: "#",
-  },
+const navItems = [
+  { id: 1, label: "About Me", href: "#about-me" },
+  { id: 2, label: "Features", href: "#future-features" },
+  { id: 3, label: "Newsletter", href: "#newsletter" },
+  { id: 4, label: "Contact", href: "/contact" },
 ];
 
+const navItemVariant = {
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export function SiteHeader() {
-  const mobilenavbarVariant = {
-    initial: {
-      opacity: 0,
-      scale: 1,
-    },
-    animate: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        duration: 0.2,
-        ease: "easeOut",
-      },
-    },
-    exit: {
-      opacity: 0,
-      transition: {
-        duration: 0.2,
-        delay: 0.2,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const mobileLinkVar = {
-    initial: {
-      y: "-20px",
-      opacity: 0,
-    },
-    open: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const containerVariants = {
-    open: {
-      transition: {
-        staggerChildren: 0.06,
-      },
-    },
-  };
-
-  const [hamburgerMenuIsOpen, setHamburgerMenuIsOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const html = document.querySelector("html");
-    if (html) html.classList.toggle("overflow-hidden", hamburgerMenuIsOpen);
-  }, [hamburgerMenuIsOpen]);
+    document.documentElement.classList.toggle("overflow-hidden", isMobileMenuOpen);
+  }, [isMobileMenuOpen]);
 
-  useEffect(() => {
-    const closeHamburgerNavigation = () => setHamburgerMenuIsOpen(false);
-    window.addEventListener("orientationchange", closeHamburgerNavigation);
-    window.addEventListener("resize", closeHamburgerNavigation);
-
-    return () => {
-      window.removeEventListener("orientationchange", closeHamburgerNavigation);
-      window.removeEventListener("resize", closeHamburgerNavigation);
-    };
-  }, [setHamburgerMenuIsOpen]);
+  const mobileMenuVariants = {
+    hidden: { opacity: 0, x: "100%" },
+    visible: { opacity: 1, x: "0%", transition: { duration: 0.3, ease: "easeOut" } },
+    exit: { opacity: 0, x: "100%", transition: { duration: 0.2, ease: "easeIn" } },
+  };
 
   return (
-    <>
-      <header className="fixed left-0 top-0 z-50 w-full translate-y-[-1rem] animate-fade-in border-b opacity-0 backdrop-blur-[12px] [--animation-delay:600ms]">
-        <div className="container flex h-[3.5rem] items-center justify-between">
-          <Link className="text-md flex items-center" href="/">
-            Magic UI
-          </Link>
-
-          <div className="ml-auto flex h-full items-center">
-            <Link className="mr-6 text-sm" href="/signin">
-              Log in
-            </Link>
-            <Link
-              className={cn(
-                buttonVariants({ variant: "secondary" }),
-                "mr-6 text-sm"
-              )}
-              href="/signup"
-            >
-              Sign up
-            </Link>
-          </div>
-          <button
-            className="ml-6 md:hidden"
-            onClick={() => setHamburgerMenuIsOpen((open) => !open)}
-          >
-            <span className="sr-only">Toggle menu</span>
-            {hamburgerMenuIsOpen ? <XIcon /> : <AlignJustify />}
-          </button>
-        </div>
-      </header>
-      <AnimatePresence>
-        <motion.nav
-          initial="initial"
-          exit="exit"
-          variants={mobilenavbarVariant}
-          animate={hamburgerMenuIsOpen ? "animate" : "exit"}
-          className={cn(
-            `fixed left-0 top-0 z-50 h-screen w-full overflow-auto bg-background/70 backdrop-blur-[12px] `,
-            {
-              "pointer-events-none": !hamburgerMenuIsOpen,
-            }
-          )}
-        >
-          <div className="container flex h-[3.5rem] items-center justify-between">
-            <Link className="text-md flex items-center" href="/">
-              Magic UI
-            </Link>
-
-            <button
-              className="ml-6 md:hidden"
-              onClick={() => setHamburgerMenuIsOpen((open) => !open)}
-            >
-              <span className="sr-only">Toggle menu</span>
-              {hamburgerMenuIsOpen ? <XIcon /> : <AlignJustify />}
-            </button>
-          </div>
-          <motion.ul
-            className={`flex flex-col md:flex-row md:items-center uppercase md:normal-case ease-in`}
-            variants={containerVariants}
-            initial="initial"
-            animate={hamburgerMenuIsOpen ? "open" : "exit"}
-          >
-            {menuItem.map((item) => (
-              <motion.li
-                variants={mobileLinkVar}
-                key={item.id}
-                className="border-grey-dark pl-6 py-0.5 border-b md:border-none"
+    <header className="fixed top-0 left-0 w-full bg-zinc-100 shadow-sm z-50">
+      {/* Header Container */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="container mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <Link href="/">
+          <span className="text-xl font-bold text-neutral-900 cursor-pointer">
+            SICK
+          </span>
+        </Link>
+        <nav className="hidden md:flex space-x-8">
+          {navItems.map((item, index) => (
+            <Link key={item.id} href={item.href}>
+              <motion.span
+                variants={navItemVariant}
+                initial="hidden"
+                animate="visible"
+                transition={{ delay: 0.1 * index, duration: 0.3 }}
+                className="text-neutral-900 hover:text-neutral-900 transition-colors cursor-pointer relative"
               >
-                <Link
-                  className={`hover:text-grey flex h-[var(--navigation-height)] w-full items-center text-xl transition-[color,transform] duration-300 md:translate-y-0 md:text-sm md:transition-colors ${
-                    hamburgerMenuIsOpen ? "[&_a]:translate-y-0" : ""
-                  }`}
-                  href={item.href}
+                {item.label}
+                {/* Underline animation */}
+                <motion.span
+                  className="absolute left-0 -bottom-1 h-0.5 w-full bg-neutral-900 origin-left"
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.span>
+            </Link>
+          ))}
+        </nav>
+        <button
+          className="md:hidden text-neutral-900 focus:outline-none"
+          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+        >
+          {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+        </button>
+      </motion.div>
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.nav
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={mobileMenuVariants}
+            className="md:hidden fixed top-0 right-0 w-3/4 max-w-xs h-full bg-neutral-800 shadow-lg z-40"
+          >
+            <div className="px-6 py-4 flex items-center justify-between">
+              <Link href="/">
+                <span
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-xl font-bold text-neutral-900 cursor-pointer"
                 >
-                  {item.label}
-                </Link>
-              </motion.li>
-            ))}
-          </motion.ul>
-        </motion.nav>
+                  SICK
+                </span>
+              </Link>
+              <button
+                className="text-neutral-900 focus:outline-none"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <FaTimes size={24} />
+              </button>
+            </div>
+            <ul className="mt-4 space-y-4 px-6">
+              {navItems.map((item) => (
+                <li key={item.id}>
+                  <Link href={item.href}>
+                    <span
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block text-lg text-neutral-100 hover:text-neutral-900 transition-colors cursor-pointer"
+                    >
+                      {item.label}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.nav>
+        )}
       </AnimatePresence>
-    </>
+    </header>
   );
 }
