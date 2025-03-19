@@ -4,85 +4,70 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    /* Thème Light – Gris clair */
+    --background: 0 0% 96%; /* fond très clair */
+    --foreground: 0 0% 20%; /* texte en gris foncé */
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card: 0 0% 100%; /* cartes en blanc */
+    --card-foreground: 0 0% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
+    --popover-foreground: 0 0% 20%;
 
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 210 10% 40%; /* bleu-gris subtil */
+    --primary-foreground: 0 0% 98%; /* texte clair sur primaire */
 
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
+    --secondary: 0 0% 92%; /* fond secondaire légèrement plus foncé */
+    --secondary-foreground: 0 0% 20%;
 
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --accent: 0 0% 92%;
+    --accent-foreground: 0 0% 20%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 0 0% 20%;
 
     --radius: 0.5rem;
 
-    /* Custom properties */
+    /* Propriétés personnalisées */
     --navigation-height: 3.5rem;
-    --color-one: #ffbd7a;
-    --color-two: #fe8bbb;
-    --color-three: #9e7aff;
-
-    /* 
-    --color-one: #37ecba;
-    --color-two: #72afd3;
-    --color-three: #ff2e63;
-     */
   }
 
   .dark {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 98%;
+    /* Thème Dark – Gris profond */
+    --background: 0 0% 14%; /* fond très sombre */
+    --foreground: 0 0% 98%; /* texte en blanc */
 
-    --card: 0 0% 3.9%;
+    --card: 0 0% 20%; /* cartes en gris foncé */
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 3.9%;
+    --popover: 0 0% 20%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
+    --primary: 210 10% 60%; /* bleu-gris plus lumineux en mode sombre */
+    --primary-foreground: 0 0% 10%;
 
-    --secondary: 0 0% 14.9%;
+    --secondary: 0 0% 24%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
+    --muted: 0 0% 30%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 0 0% 14.9%;
+    --accent: 0 0% 24%;
     --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 98%;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
