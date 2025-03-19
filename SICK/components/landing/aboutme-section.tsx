@@ -24,7 +24,7 @@ export default function AboutMeSection() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mt-4 text-lg text-zinc-800"
         >
-          Passionate about skateboarding and development, I have poured all my energy into this project. Developed with Unity and C#, this skate game is the result of my passion and my desire to create an immersive experience.
+          Passionate about skateboarding and development, I have poured all my energy into this project. This skate game is the result of my passion and my desire to create an immersive experience.
         </motion.p>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
