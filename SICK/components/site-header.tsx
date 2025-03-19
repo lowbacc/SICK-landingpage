@@ -9,6 +9,7 @@ const navItems = [
   { id: 1, label: "About Me", href: "#about-me" },
   { id: 2, label: "Features", href: "#future-features" },
   { id: 3, label: "Newsletter", href: "#newsletter" },
+  { id: 4, label: "Contact", href: "/contact" },
 ];
 
 const navItemVariant = {
