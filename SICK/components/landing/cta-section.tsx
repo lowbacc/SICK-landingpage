@@ -46,7 +46,7 @@ export default function CTAPresentationSection() {
           <img
             src="/skate-game-screenshot.png"
             alt="Screenshot of SICK"
-            className="w-full max-w-md rounded-lg shadow-lg"
+            className="w-full max-w-lg rounded-lg shadow-lg"
           />
         </motion.div>
         <motion.div 
